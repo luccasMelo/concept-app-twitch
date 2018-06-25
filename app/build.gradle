@@ -55,9 +55,11 @@ ext.loggerVersion = '2.2.0'
 ext.daggerVersion = '2.11'
 ext.archVersion = '1.0.0-alpha8'
 ext.glideVersion = '4.3.0'
-ext.roomDatabase = '1.0.0'
-ext.leakCanary = '1.5.4'
+ext.roomDatabaseVersion = '1.0.0'
+ext.leakCanaryVersion = '1.5.4'
 ext.lifecycleVersion = '1.0.0'
+ext.utilsVersion = '0.0.16'
+ext.iconicsVersion = '3.0.4@aar'
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -100,17 +102,26 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:${glideVersion}"
 
     //Leak canary
-    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanary}"
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
 
 
     //Room
-    implementation "android.arch.persistence.room:runtime:${roomDatabase}"
-    annotationProcessor "android.arch.persistence.room:compiler:${roomDatabase}"
-    kapt "android.arch.persistence.room:compiler:${roomDatabase}"
+    implementation "android.arch.persistence.room:runtime:${roomDatabaseVersion}"
+    annotationProcessor "android.arch.persistence.room:compiler:${roomDatabaseVersion}"
+    kapt "android.arch.persistence.room:compiler:${roomDatabaseVersion}"
 
     //Utils
-    implementation 'com.github.luccasMelo:kotlin-utils:0.0.11'
+    implementation "com.github.luccasMelo:kotlin-utils:${utilsVersion}"
 
+
+    //Icons
+    implementation "com.mikepenz:iconics-core:${iconicsVersion}"
+    implementation 'com.mikepenz:google-material-typeface:3.0.1.2.original@aar'
+
+
+    //Animations
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
 
     //Testing
     testImplementation 'junit:junit:4.12'
@@ -122,6 +133,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'design'
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
+
+
+
 
 
 
