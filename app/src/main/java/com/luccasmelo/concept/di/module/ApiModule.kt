@@ -2,8 +2,8 @@ package com.luccasmelo.concept.di.module
 
 import com.luccasmelo.concept.BuildConfig
 import com.luccasmelo.concept.utils.Constants
-import com.luccasmelo.concept.data.ApiService
-import com.luccasmelo.concept.di.PerActivity
+import com.luccasmelo.concept.data.repository.ApiService
+import com.luccasmelo.kotlinutils.logE
 import dagger.Module
 import dagger.Provides
 import io.reactivex.disposables.CompositeDisposable
@@ -44,8 +44,10 @@ class ApiModule {
     @Singleton
     @Provides
     @Named("apiServiceRetrofit")
-    fun provideApiServiceRetrofit(): Retrofit {
+    fun provideApiServiceRetrofit( @Named("endPoint") endPoint:String): Retrofit {
+        endPoint.logE()
         return Retrofit.Builder()
+                .baseUrl(endPoint)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()
